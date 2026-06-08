@@ -55,6 +55,17 @@ export class AlbumCoverContainer {
     targetEl.appendChild(this._container);
   }
 
+  destroy() {
+    if (this._img) {
+      this._img.onload = null;
+    }
+    if (this._container && this._container.parentNode) {
+      this._container.parentNode.removeChild(this._container);
+    }
+    this._container = null;
+    this._img = null;
+  }
+
   _applyBackground(color) {
     const { r, g, b } = color;
     const shift = Math.round((this.gradientIntensity / 100) * 80);
