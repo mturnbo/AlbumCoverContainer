@@ -44,6 +44,17 @@ export class AlbumCoverContainer {
     this._img = img;
   }
 
+  render(imageUrl, targetEl) {
+    this._buildDOM(imageUrl);
+
+    this._img.onload = () => {
+      const color = extractDominantColor(this._img);
+      this._applyBackground(color);
+    };
+
+    targetEl.appendChild(this._container);
+  }
+
   _applyBackground(color) {
     const { r, g, b } = color;
     const shift = Math.round((this.gradientIntensity / 100) * 80);
