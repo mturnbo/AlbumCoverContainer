@@ -1,7 +1,8 @@
 import { extractDominantColor } from './colorExtractor.js';
 
 export class AlbumCoverContainer {
-  constructor(options = {}) {
+  constructor(imageUrl, options = {}) {
+    this.imageUrl = imageUrl;
     this.width = options.width ?? 300;
     this.height = options.height ?? 420;
     this.padding = Math.min(40, Math.max(5, options.padding ?? 10));
@@ -12,7 +13,7 @@ export class AlbumCoverContainer {
     this._img = null;
   }
 
-  _buildDOM(imageUrl) {
+  _buildDOM() {
     const imgSize = this.width * (1 - (this.padding * 2) / 100);
     const imgOffset = (this.width - imgSize) / 2;
 
@@ -29,7 +30,7 @@ export class AlbumCoverContainer {
     });
 
     const img = document.createElement('img');
-    img.src = imageUrl;
+    img.src = this.imageUrl;
     Object.assign(img.style, {
       display: 'block',
       width: `${imgSize}px`,
@@ -44,15 +45,25 @@ export class AlbumCoverContainer {
     this._img = img;
   }
 
-  render(imageUrl, targetEl) {
-    this._buildDOM(imageUrl);
+  _applyBackground(color) {
+    const { r, g, b } = color;
+    const shift = Math.round((this.gradientIntensity / 100) * 80);
+    const r2 = Math.min(255, r + shift);
+    const g2 = Math.min(255, g + shift);
+    const b2 = Math.min(255, b + shift);
+    this._container.style.background =
+      `linear-gradient(to bottom, rgb(${r},${g},${b}), rgb(${r2},${g2},${b2}))`;
+  }
+
+  render() {
+    this._buildDOM();
 
     this._img.onload = () => {
       const color = extractDominantColor(this._img);
       this._applyBackground(color);
     };
 
-    targetEl.appendChild(this._container);
+    return this._container;
   }
 
   destroy() {
@@ -64,15 +75,5 @@ export class AlbumCoverContainer {
     }
     this._container = null;
     this._img = null;
-  }
-
-  _applyBackground(color) {
-    const { r, g, b } = color;
-    const shift = Math.round((this.gradientIntensity / 100) * 80);
-    const r2 = Math.min(255, r + shift);
-    const g2 = Math.min(255, g + shift);
-    const b2 = Math.min(255, b + shift);
-    this._container.style.background =
-      `linear-gradient(to bottom, rgb(${r},${g},${b}), rgb(${r2},${g2},${b2}))`;
   }
 }
