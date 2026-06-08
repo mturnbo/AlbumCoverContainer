@@ -1,0 +1,14 @@
+{
+  "name": "album-cover-container",
+  "version": "1.0.0",
+  "description": "Framework-agnostic component that generates a dominant-color gradient background for album cover images",
+  "type": "module",
+  "main": "src/AlbumCoverContainer.js",
+  "exports": {
+    ".": "./src/AlbumCoverContainer.js",
+    "./color": "./src/colorExtractor.js"
+  },
+  "keywords": ["album", "cover", "music", "color", "gradient", "component"],
+  "author": "Marcus E. Turnbo",
+  "license": "MIT"
+}
