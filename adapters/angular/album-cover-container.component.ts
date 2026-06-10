@@ -26,8 +26,20 @@ export class AlbumCoverContainerComponent implements AfterViewInit, OnDestroy {
   private _instance: any = null;
 
   ngAfterViewInit(): void {
+    this._instance = new AlbumCoverContainer(this.imageUrl, {
+      width: this.width,
+      height: this.height,
+      padding: this.padding,
+      borderRadius: this.borderRadius,
+      gradientIntensity: this.gradientIntensity,
+    });
+    this.mountRef.nativeElement.appendChild(this._instance.render());
   }
 
   ngOnDestroy(): void {
+    if (this._instance) {
+      this._instance.destroy();
+      this._instance = null;
+    }
   }
 }
