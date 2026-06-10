@@ -24,6 +24,20 @@ export function AlbumCoverContainerComponent({
   const instanceRef = useRef(null);
 
   useEffect(() => {
+    const instance = new window.AlbumCoverContainer(imageUrl, {
+      width,
+      height,
+      padding,
+      borderRadius,
+      gradientIntensity,
+    });
+    instanceRef.current = instance;
+    mountRef.current.appendChild(instance.render());
+
+    return () => {
+      instance.destroy();
+      instanceRef.current = null;
+    };
   }, []);
 
   return <div ref={mountRef} />;
