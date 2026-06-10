@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AlbumCoverContainer — Demo</title>
+  <title>Album Cover Container — Demo</title>
+  <script src="./src/AlbumCoverContainer.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
-      background: #111;
+      background: #777777;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -23,7 +24,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #aaa;
+      color: #FFFFFF;
       margin-bottom: 48px;
     }
 
@@ -51,9 +52,41 @@
   </style>
 </head>
 <body>
-  <h1>AlbumCoverContainer</h1>
-  <div id="stage"></div>
+  <h1>Album Cover Container</h1>
 
-  <script type="module" src="demo.js"></script>
+  <div id="stage">
+
+    <span id="album-container-rock" class="album-slot">
+      <script>
+        (function() {
+          const options = {width: 260, height: 360, padding: 10, borderRadius: 12, gradientIntensity: 15};
+          const container = new AlbumCoverContainer('assets/example-album-rock.png', options);
+          document.currentScript.parentElement.appendChild(container.render());
+        })();
+      </script>
+    </span>
+
+    <span id="album-container-electronic" class="album-slot">
+      <script>
+        (function() {
+          const options = {width: 300, height: 400, padding: 10, borderRadius: 12, gradientIntensity: 25};
+          const container = new AlbumCoverContainer('assets/example-album-electronic.png', options);
+          document.currentScript.parentElement.appendChild(container.render());
+        })();
+      </script>
+    </span>
+
+    <span id="album-container-hiphop" class="album-slot">
+      <script>
+        (function() {
+          const options = {width: 260, height: 460, padding: 10, borderRadius: 20, gradientIntensity: 40};
+          const container = new AlbumCoverContainer('assets/example-album-hip-hop.png', options);
+          document.currentScript.parentElement.appendChild(container.render());
+        })();
+      </script>
+    </span>
+
+  </div>
+
 </body>
 </html>
