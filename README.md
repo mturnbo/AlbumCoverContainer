@@ -1,4 +1,4 @@
-# AlbumCoverContainer
+# Album Cover Container
 
 A lightweight, framework-agnostic JavaScript component that generates a dominant-color gradient background container for album cover images. Drop in a single script tag — no build step, no dependencies.
 
@@ -143,23 +143,6 @@ function NowPlaying() {
 ```
 
 Requires React ≥ 16.8.
-
----
-
-## File structure
-
-```
-AlbumCoverContainer/
-  src/
-    AlbumCoverContainer.js   # Core component + color extractor (single file)
-  adapters/
-    angular/
-      album-cover-container.component.ts
-    react/
-      AlbumCoverContainer.jsx
-  assets/                    # Sample album covers for demo
-  index.html                 # Demo page
-```
 
 ---
 
