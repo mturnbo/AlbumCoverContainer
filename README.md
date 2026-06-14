@@ -14,7 +14,7 @@ npx serve .
 
 ---
 
-## How it works
+## How It Works
 
 1. Loads the album image into an offscreen `<canvas>`
 2. Samples pixels at 50×50 resolution and quantizes RGB channels to find the dominant color
