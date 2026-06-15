@@ -113,7 +113,7 @@ import { AlbumCoverContainerComponent } from './adapters/angular/album-cover-con
 />
 ```
 
-Requires Angular ≥ 14.
+Requires Angular ≥ 14. Re-renders automatically when any `@Input` changes via `ngOnChanges`.
 
 ---
 
@@ -142,7 +142,65 @@ function NowPlaying() {
 }
 ```
 
-Requires React ≥ 16.8.
+Requires React ≥ 16.8. Re-renders automatically when any prop changes.
+
+---
+
+## Vue
+
+Load the script globally in `index.html`, then use the wrapper component:
+
+```html
+<!-- index.html -->
+<script src="/AlbumCoverContainer.js"></script>
+```
+
+```js
+import AlbumCoverContainerComponent from './adapters/vue/AlbumCoverContainer.vue';
+
+export default {
+  components: { AlbumCoverContainerComponent },
+};
+```
+
+```html
+<AlbumCoverContainerComponent
+  imageUrl="assets/cover.png"
+  :width="300"
+  :height="420"
+  :borderRadius="12"
+  :gradientIntensity="20"
+/>
+```
+
+Requires Vue 3. Re-renders automatically when any prop changes.
+
+---
+
+## Svelte
+
+Load the script globally in `app.html` (SvelteKit) or `index.html` (Vite), then import the component:
+
+```html
+<!-- app.html / index.html -->
+<script src="/AlbumCoverContainer.js"></script>
+```
+
+```svelte
+<script>
+  import AlbumCoverContainer from './adapters/svelte/AlbumCoverContainer.svelte';
+</script>
+
+<AlbumCoverContainer
+  imageUrl="assets/cover.png"
+  width={300}
+  height={420}
+  borderRadius={12}
+  gradientIntensity={20}
+/>
+```
+
+Requires Svelte ≥ 3. Re-renders automatically when any prop changes.
 
 ---
 
