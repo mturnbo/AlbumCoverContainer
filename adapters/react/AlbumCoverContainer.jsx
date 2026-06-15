@@ -5,11 +5,11 @@ import { useEffect, useRef } from 'react';
 
 /**
  * @param {object}  props
- * @param {string}  props.imageUrl          - Same-origin image URL
- * @param {number}  [props.width=300]       - Container width in px
- * @param {number}  [props.height=420]      - Container height in px
- * @param {number}  [props.padding=10]      - Image padding as % of width (5–40)
- * @param {number}  [props.borderRadius=0]  - Corner radius in px (0–20)
+ * @param {string}  props.imageUrl               - Same-origin image URL
+ * @param {number}  [props.width=300]            - Container width in px
+ * @param {number}  [props.height=420]           - Container height in px
+ * @param {number}  [props.padding=10]           - Image padding as % of width (5–40)
+ * @param {number}  [props.borderRadius=0]       - Corner radius in px (0–20)
  * @param {number}  [props.gradientIntensity=10] - Gradient strength as % (0–100)
  */
 export function AlbumCoverContainerComponent({
@@ -24,6 +24,10 @@ export function AlbumCoverContainerComponent({
   const instanceRef = useRef(null);
 
   useEffect(() => {
+    if (instanceRef.current) {
+      instanceRef.current.destroy();
+    }
+
     const instance = new window.AlbumCoverContainer(imageUrl, {
       width,
       height,
@@ -38,7 +42,7 @@ export function AlbumCoverContainerComponent({
       instance.destroy();
       instanceRef.current = null;
     };
-  }, []);
+  }, [imageUrl, width, height, padding, borderRadius, gradientIntensity]);
 
   return <div ref={mountRef} />;
 }
