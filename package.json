@@ -1,14 +1,34 @@
 {
   "name": "album-cover-container",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Framework-agnostic component that generates a dominant-color gradient background for album cover images",
   "type": "module",
   "main": "src/AlbumCoverContainer.js",
   "exports": {
-    ".": "./src/AlbumCoverContainer.js",
-    "./color": "./src/colorExtractor.js"
+    ".": "./src/AlbumCoverContainer.js"
   },
-  "keywords": ["album", "cover", "music", "color", "gradient", "component"],
+  "keywords": [
+    "album",
+    "cover",
+    "music",
+    "color",
+    "gradient",
+    "component"
+  ],
   "author": "Marcus E. Turnbo",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFiles": ["jest-canvas-mock"],
+    "testMatch": ["**/tests/**/*.test.js"],
+    "transform": {}
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-canvas-mock": "^2.5.2",
+    "jest-environment-jsdom": "^30.4.1"
+  }
 }
